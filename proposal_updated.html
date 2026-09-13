@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Very Important Question 💌</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at top,#fff,#ffe8f0 48%,#ffd8e4);color:#5b3441}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none}.heart{position:absolute;bottom:-50px;opacity:.55;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.card{position:relative;z-index:2;width:min(92vw,650px);padding:36px 25px 32px;text-align:center;background:#ffffffd9;backdrop-filter:blur(14px);border:1px solid #fff;border-radius:32px;box-shadow:0 24px 70px #a0415f33}
+.ribbon{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#c14c6c;font-weight:800}
+.quote{font-size:clamp(23px,5.5vw,34px);font-weight:700;line-height:1.45;color:#bd3f64;margin:14px auto 25px;max-width:570px}
+.question{font-size:clamp(26px,6vw,42px);font-weight:850;line-height:1.2;margin:0;color:#5b3441}
+.emoji{font-size:48px;margin:10px 0 12px}
+.sub{font-size:16px;margin:14px 0 24px;opacity:.75}
+.buttons{position:relative;min-height:70px;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+button{border:0;border-radius:999px;padding:15px 24px;font-size:16px;font-weight:800;cursor:pointer;transition:.2s;touch-action:manipulation}
+#yes{background:#db4770;color:#fff;box-shadow:0 9px 24px #db47704d}#yes:hover{transform:scale(1.07)}
+#no{background:#fff0f4;color:#a63d5b}
+.note{font-size:12px;opacity:.55;margin-top:13px}
+#success{display:none}.big{font-size:75px}h2{font-size:clamp(32px,8vw,50px);color:#bd3f64;margin:6px 0 10px}
+.success-text{font-size:19px;line-height:1.55}.burst{position:fixed;z-index:5;pointer-events:none;font-size:28px;animation:burst 1.5s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--x),var(--y)) scale(1.4);opacity:0}}
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<main class="card">
+<section id="question">
+<div class="ribbon">A little something for you 💌</div>
+<div class="emoji">🥺❤️</div>
+<div class="quote">“Jab tum has has ke kuch bhi bolti ho na saanu,<br>i forget my over thinking..<br>my heart says stay, my soul says home,<br>and what would I say?<br>‘I love you.’”</div>
+<div class="question">Will you be my most beautiful girlfriend in this world? 🥺</div>
+<p class="sub">Choose carefully... there is definitely a correct answer. 👉👈</p>
+<div class="buttons">
+<button id="yes">YES, obviously 💍❤️</button>
+<button id="no">No 😭</button>
+</div>
+<div class="note">P.S. The “No” button is a little shy. It may run away. 😂</div>
+</section>
+<section id="success">
+<div class="big">💍🥹❤️</div>
+<h2>SHE SAID YES!!!</h2>
+<p class="success-text">Okay, now I can finally stop pretending I wasn't nervous. 🤧<br><br>Welcome to being my most beautiful girlfriend. ❤️</p>
+<div style="font-size:32px">👩‍❤️‍👨 ✨ 🏡 ✨ 💕</div>
+</section>
+</main>
+<script>
+const bg=document.getElementById("bg"),symbols=["❤️","💗","💕","💖","💘","🌸","✨"];
+for(let i=0;i<24;i++){let s=document.createElement("span");s.className="heart";s.textContent=symbols[Math.floor(Math.random()*symbols.length)];s.style.left=Math.random()*100+"%";s.style.fontSize=16+Math.random()*22+"px";s.style.animationDuration=5+Math.random()*6+"s";s.style.animationDelay=-Math.random()*8+"s";bg.appendChild(s)}
+const no=document.getElementById("no"),yes=document.getElementById("yes"),q=document.getElementById("question"),ok=document.getElementById("success");
+const msgs=["No 😭","Are you sure? 🥺","Think again 👉👈","Please? 🤧","My heart 💔","Wrong button 😭","Nice try 😌","That button is broken 😂"];
+let n=0;
+function dodge(e){if(e)e.preventDefault();n++;no.textContent=msgs[n%msgs.length];no.style.transform=`translate(${Math.random()*240-120}px,${Math.random()*120-60}px)`}
+no.addEventListener("mouseenter",dodge);no.addEventListener("touchstart",dodge,{passive:false});no.addEventListener("click",dodge);
+yes.onclick=()=>{q.style.display="none";ok.style.display="block";for(let i=0;i<40;i++){let h=document.createElement("div");h.className="burst";h.textContent=["❤️","💗","💖","💕","✨"][i%5];h.style.left="50%";h.style.top="50%";h.style.setProperty("--x",Math.random()*520-260+"px");h.style.setProperty("--y",Math.random()*520-260+"px");h.style.animationDelay=Math.random()*.35+"s";document.body.appendChild(h);setTimeout(()=>h.remove(),1900)}};
+</script>
+</body>
+</html>
