@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Surprise, open me! 💌</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:system-ui,sans-serif;color:#eee9ed;background:radial-gradient(circle at 15% 10%,#193b63,#101d34 38%,#210f1a 72%,#3b101f)}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none}.heart{position:absolute;bottom:-50px;opacity:.5;animation:rise linear infinite}@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.card{position:relative;z-index:2;width:min(92vw,680px);padding:38px 27px 34px;text-align:center;background:linear-gradient(145deg,#102a47e8,#311421e8);border:1px solid #9b526f66;border-radius:32px;box-shadow:0 25px 80px #0008,inset 0 1px #fff2;backdrop-filter:blur(16px)}
+.ribbon{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9bbfe3;font-weight:800}.emoji{font-size:52px;margin:12px 0 15px}
+.quote{font-size:clamp(22px,5.3vw,33px);font-weight:650;line-height:1.48;color:#e6d9df;margin:10px auto 26px;max-width:600px}
+.question{font-size:clamp(23px,5.4vw,36px);font-weight:850;line-height:1.25;color:#a9c9e8;margin:auto;max-width:600px}.sub{font-size:17px;line-height:1.6;margin:17px 0 25px;color:#ddd2d7}.sub b{color:#d0839d;font-size:clamp(25px,6vw,38px)}
+.buttons{position:relative;min-height:70px;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}button{border:0;border-radius:999px;padding:15px 25px;font-size:16px;font-weight:800;cursor:pointer;transition:.2s;touch-action:manipulation}
+#yes{background:linear-gradient(135deg,#8d3655,#b05270);color:white;box-shadow:0 10px 28px #8d365555}#yes:hover{transform:scale(1.07)}#no{background:#183653;color:#b8cde1;border:1px solid #6688aa66}.note{font-size:12px;opacity:.5;margin-top:14px}
+#success{display:none}.big{font-size:76px}h2{font-size:clamp(32px,8vw,51px);color:#d0839d;margin:6px 0 10px}.success-text{font-size:19px;line-height:1.6;color:#e4dbe0}
+.burst{position:fixed;z-index:5;pointer-events:none;font-size:28px;animation:burst 1.5s ease-out forwards}@keyframes burst{to{transform:translate(var(--x),var(--y)) scale(1.4);opacity:0}}
+</style></head><body><div class="bg" id="bg"></div><main class="card"><section id="question">
+<div class="ribbon">A little something for you 💌</div><div class="emoji">🥺💙🍷</div>
+<div class="quote">“Jab tum has has ke kuch bhi bolti ho na saanu,<br>i forget my over thinking..<br>my heart says stay, my soul says home,<br>and what would I say?<br>‘I love you.’”</div>
+<div class="question">Please rest your head over my chest, listening to my heartbeat as music and sab bhula ke just be lost in our world! ❤️</div>
+<p class="sub">I promise I'll take care of you as my family. 🥺<br><br><b>Will you be my girlfriend?</b></p>
+<div class="buttons"><button id="yes">YES, obviously 💍❤️</button><button id="no">No 😭</button></div>
+<div class="note">P.S. The “No” button is a little shy. It may run away. 😂</div></section>
+<section id="success"><div class="big">💍🥹❤️</div><h2>SHE SAID YES!!!</h2><p class="success-text">Okay, now I can finally stop pretending I wasn't nervous. 🤧<br><br>Come here. You’re home now. ❤️</p><div style="font-size:32px">💙 ✨ 👩‍❤️‍👨 ✨ 🍷</div></section></main>
+<script>
+const bg=document.getElementById("bg"),s=["💙","🍷","❤️","💙","✨","🌙","💕"];for(let i=0;i<26;i++){let x=document.createElement("span");x.className="heart";x.textContent=s[Math.floor(Math.random()*s.length)];x.style.left=Math.random()*100+"%";x.style.fontSize=16+Math.random()*22+"px";x.style.animationDuration=5+Math.random()*7+"s";x.style.animationDelay=-Math.random()*9+"s";bg.appendChild(x)}
+const no=document.getElementById("no"),yes=document.getElementById("yes"),q=document.getElementById("question"),ok=document.getElementById("success"),
+msgs=["No 😭","Are you sure? 🥺","Think again 👉👈","Please? 🤧","My heart 💔","Wrong button 😭","Nice try 😌","Hehe, too slow 😂","You can't catch me 🏃‍♂️💨","No is not available today 😌","Ask me tomorrow 🙃","Ma'am, please choose YES 😭❤️","This button has resigned 💀"];
+let n=0;
+function dodge(e){
+ if(e)e.preventDefault();
+ n++;
+ no.textContent=msgs[n%msgs.length];
+ const x=Math.random()*320-160, y=Math.random()*170-85;
+ no.style.transform=`translate(${x}px,${y}px) rotate(${Math.random()*18-9}deg)`;
+ if(n>4) yes.style.transform=`scale(${1+Math.min(n*.025,.18)})`;
+ if(n>7) no.style.opacity=.78;
+}
+no.addEventListener("mouseenter",dodge);
+no.addEventListener("touchstart",dodge,{passive:false});
+no.addEventListener("click",dodge);
+yes.onclick=()=>{q.style.display="none";ok.style.display="block";for(let i=0;i<42;i++){let h=document.createElement("div");h.className="burst";h.textContent=["💙","🍷","❤️","💕","✨"][i%5];h.style.left="50%";h.style.top="50%";h.style.setProperty("--x",Math.random()*540-270+"px");h.style.setProperty("--y",Math.random()*540-270+"px");h.style.animationDelay=Math.random()*.35+"s";document.body.appendChild(h);setTimeout(()=>h.remove(),1900)}};
+</script></body></html>
